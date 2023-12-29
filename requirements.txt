@@ -1,6 +1,6 @@
-tensorflow
-opencv-python
-scikit-learn
+tensorflow==2.15.0
+opencv-python==4.8.0
+scikit-learn==1.2.2
 fastapi
 uvicorn
 numpy
