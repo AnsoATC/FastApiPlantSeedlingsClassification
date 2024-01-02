@@ -82,5 +82,5 @@ async def predict(file: UploadFile = File(...)):
         'confidence': float(confidence) #confidence #float(confidence)
     }
 
-if __name__ == "__main__":
-    uvicorn.run(app, host='localhost', port=8000)  # Run the app
+# if __name__ == "__main__":
+#     uvicorn.run(app, host='localhost', port=8000)  # Run the app
