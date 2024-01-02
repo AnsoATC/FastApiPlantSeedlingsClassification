@@ -1,10 +1,12 @@
-#tensorflow==2.15.0
-tensorflow-cpu==2.15.0
+tensorflow==2.15.0
+#tensorflow-cpu==2.15.0
 opencv-python==4.8.0.76
 scikit-learn==1.2.2
 fastapi
 uvicorn
 gunicorn
-numpy
+numpy==1.23.5
 Pillow
+python-multipart
+matplotlib
 
