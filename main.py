@@ -5,8 +5,9 @@ import numpy as np
 from io import BytesIO
 from PIL import Image
 import tensorflow as tf
-import cv2
+#import cv2
 import random
+from PIL import Image
 
 app = FastAPI()
 
@@ -40,13 +41,25 @@ async def ping():
 async def ping():
     return "Hello, I am alive"
 
-def preprocess_image(image: Image.Image) -> np.ndarray:
-    # Convert PIL Image to NumPy array and preprocess as per your model's requirements
-    img = np.array(image)
-    img = cv2.resize(img, (128, 128))  # Resize to match model's expected input size
-    # Add other preprocessing steps here if needed
-    img = img.astype('float32') / 255.0  # Normalize the image
-    return img
+# def preprocess_image(image: Image.Image) -> np.ndarray:
+#     # Convert PIL Image to NumPy array and preprocess as per your model's requirements
+#     img = np.array(image)
+#     img = cv2.resize(img, (128, 128))  # Resize to match model's expected input size
+#     # Add other preprocessing steps here if needed
+#     img = img.astype('float32') / 255.0  # Normalize the image
+#     return img
+
+def preprocess_image(image: Image.Image, target_size=(128, 128)) -> np.ndarray:
+    # Resize the image using Pillow
+    img_resized = image.resize(target_size)
+
+    # Convert PIL Image to NumPy array
+    img_array = np.array(img_resized)
+
+    # Normalize the image
+    img_normalized = img_array.astype('float32') / 255.0
+
+    return img_normalized
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
@@ -69,5 +82,5 @@ async def predict(file: UploadFile = File(...)):
         'confidence': float(confidence) #confidence #float(confidence)
     }
 
-# if __name__ == "__main__":
-#     uvicorn.run(app, host='localhost', port=8000)  # Run the app
+if __name__ == "__main__":
+    uvicorn.run(app, host='localhost', port=8000)  # Run the app

@@ -1,6 +1,7 @@
 #tensorflow==2.15.0
 tensorflow-cpu==2.15.0
-opencv-python==4.8.0.76
+#opencv-python==4.8.0.76
+opencv-python
 scikit-learn==1.2.2
 fastapi
 uvicorn
