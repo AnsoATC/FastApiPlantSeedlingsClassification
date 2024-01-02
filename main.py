@@ -12,17 +12,18 @@ from PIL import Image
 app = FastAPI()
 
 # Uncomment the CORS middleware if your API is being accessed from a different domain (e.g., a frontend application)
-# origins = [
-#     "http://localhost",
-#     "http://localhost:3000",
-# ]
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=origins,
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+origins = [
+    # "http://localhost",
+    # "http://localhost:3000",
+    "https://web-app-plant-seedlings-classi-f5f746657f7d.herokuapp.com",
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Load your trained model
 MODEL = tf.keras.models.load_model('saved_models/plant-seedling-2.h5')  # Update with your model path
