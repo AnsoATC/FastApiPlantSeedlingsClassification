@@ -1,41 +1,45 @@
-1. **Create the Aptfile**:
-   - In the root of your local project directory (the same directory where your `requirements.txt` and other project files are located), create a file named `Aptfile`.
-   - Inside this file, add the line `libgl1-mesa-glx` to specify that Heroku should install the `libGL` library. Your `Aptfile` should look like this:
-     ```
-     libgl1-mesa-glx
-     ```
+# FastAPI Plant Seedlings Classification
 
-2. **Update the Buildpacks**:
-   - If you haven’t already added the Heroku Apt buildpack to your app, do so by running the following command in your terminal:
-     ```bash
-     heroku buildpacks:add --index 1 heroku-community/apt -a your-app-name
-     ```
-     Replace `your-app-name` with the actual name of your Heroku app.
-   - Ensure that the Python buildpack is also added since your application is a Python app. You can verify your buildpacks with:
-     ```bash
-     heroku buildpacks -a your-app-name
-     ```
-   - The buildpacks should include both `heroku/python` and `heroku-community/apt`.
+## Overview
+This project is a machine learning-based API for classifying plant seedlings. It utilizes a pre-trained model to identify various seedling types from images. Built with FastAPI, it's structured for easy deployment on Heroku.
 
-3. **Test Locally** (Optional):
-   - While you can't directly test the Apt buildpack locally, you can ensure that the rest of your application is functioning as expected.
-   - Run your application locally to make sure there are no other issues. If you're using FastAPI with Uvicorn, you can typically run it using a command like:
-     ```bash
-     uvicorn your_app_module:app --reload
-     ```
+## Features
+- Image-based plant seedling classification.
+- FastAPI for efficient request handling.
+- Ready for Heroku deployment.
 
-4. **Commit and Push Changes**:
-   - Once you're ready, commit the `Aptfile` to your Git repository:
-     ```bash
-     git add Aptfile
-     git commit -m "Add Aptfile to install libGL on Heroku"
-     ```
-   - Push the changes to your Heroku app:
-     ```bash
-     git push heroku master
-     ```
+## Requirements
+- Python 3.10+
+- Dependencies listed in `requirements.txt`.
 
-5. **Redeploy on Heroku**:
-   - After pushing the changes, Heroku will automatically trigger a new build and deploy process.
-   - Monitor the build logs in the Heroku dashboard to ensure that the `libgl1-mesa-glx` package is installed without errors.
-   
+## Installation and Local Setup
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/YourUsername/FastApiPlantSeedlingsClassification.git
+   cd FastApiPlantSeedlingsClassification
+
+### Create and Activate a Virtual Environment (Optional but recommended):
+python -m venv venv
+source venv/bin/activate  # For Windows: venv\Scripts\activate
+
+### Install Dependencies:
+pip install -r requirements.txt
+
+### Run the Application:
+uvicorn main:app --reload
+
+## Usage
+With the server running, make requests to http://localhost:8000. The primary endpoint is /predict, accepting POST requests with an image file.
+
+## Example Request
+URL: /predict
+Method: POST
+Body: Multipart form with an image file
+Deployment
+The application is configured for Heroku deployment. Refer to Heroku's Python app deployment guidelines.
+
+## Contributing
+Contributions are welcome. Please fork the repository, make your changes, and submit a pull request.
+
+## License
+Distributed under the MIT License. See LICENSE for more information.
