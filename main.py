@@ -32,6 +32,10 @@ CLASS_NAMES = ['Black-grass', 'Charlock', 'Cleavers', 'Common Chickweed',
                'Scentless Mayweed', 'Shepherds Purse',
                'Small-flowered Cranesbill', 'Sugar beet']
 
+@app.get("/")
+async def ping():
+    return "Hello, I am alive"
+
 @app.get("/ping")
 async def ping():
     return "Hello, I am alive"
