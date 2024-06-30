@@ -16,6 +16,7 @@ origins = [
     # "http://localhost",
     # "http://localhost:3000",
     "https://web-app-plant-seedlings-classi-f5f746657f7d.herokuapp.com",
+    "https://plant-seedlings-classification-d3b7397c2431.herokuapp.com"
 ]
 app.add_middleware(
     CORSMiddleware,
